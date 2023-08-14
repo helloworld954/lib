@@ -131,11 +131,11 @@ android {
         jvmTarget = '1.8'
     }
 
-//    publishing {
-//        singleVariant('release') {
-//            withSourcesJar()
-//        }
-//    }
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
