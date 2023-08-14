@@ -21,7 +21,7 @@ public class App extends BaseApplication {
         AdmobExtKt.registerOpenAppAd(
                 AdsPool.INSTANCE,
                 this,
-                BuildConfig.openApp_main
+                "BuildConfig.openApp_main"
         );
     }
 }

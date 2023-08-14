@@ -48,7 +48,7 @@ def key_APPID = "app.APP_ID"
 
 def adsProperties = new Properties()
 
-tasks.register("libeyesInitial") {
+task libeyesInitial {
     File propsFile = new File(rootDir, "ads-id.properties")
     if (propsFile.exists()) {
         adsProperties.clear()
@@ -68,6 +68,16 @@ tasks.register("libeyesInitial") {
         adsProperties = properties.clone()
         properties.clear()
     }
+}
+
+gradle.afterProject { project ->
+    project.task(dependsOn: libeyesInitial) {
+
+    }
+}
+
+tasks.register("libeye") {
+    dependsOn(libeyesInitial)
 }
 
 android {
@@ -121,11 +131,11 @@ android {
         jvmTarget = '1.8'
     }
 
-    publishing {
-        singleVariant('release') {
-            withSourcesJar()
-        }
-    }
+//    publishing {
+//        singleVariant('release') {
+//            withSourcesJar()
+//        }
+//    }
 }
 
 dependencies {

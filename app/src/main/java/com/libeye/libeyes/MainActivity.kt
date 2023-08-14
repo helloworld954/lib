@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val param = AdMobLoadParam.AdmobInterstitial(
-            this, BuildConfig.inter_main,
+            this, "BuildConfig.inter_main",
             interLoadCallback = object: LoadCallback {
                 override fun loadFailed() {
                     super.loadFailed()
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btn_inter_immediately).setOnClickListener {
             AdsPool.loadAndShowImmediately(
                 lp = AdMobLoadParam.AdmobInterstitial(
-                    this, BuildConfig.inter_main,
+                    this, "BuildConfig.inter_main",
                     interLoadCallback = object: LoadCallback {
 
                     },
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
             lp = AdMobLoadParam.AdmobNative(
                 this,
                 findViewById(R.id.my_template),
-                nativeId = BuildConfig.native_main,
+                nativeId = "BuildConfig.native_main",
                 lifecycleOwner = this
             ),
             sp = AdMobShowParam.SPAdmobNative(
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
             lp = AdMobLoadParam.AdmobBanner,
             sp = AdMobShowParam.SPAdmobBanner(
                 findViewById(R.id.banner_template),
-                BuildConfig.banner_main,
+                "BuildConfig.banner_main",
                 showCallback = object : ShowCallback {
                     override fun onSuccess() {
                         Log.d("vanh: MainActivity", "onSuccess: ")
