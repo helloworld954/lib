@@ -47,24 +47,27 @@ static String defaultWithType(String prefix) {
 def key_APPID = "app.APP_ID"
 
 def adsProperties = new Properties()
-File propsFile = new File(rootDir, "ads-id.properties")
-if (propsFile.exists()) {
-    adsProperties.clear()
 
-    propsFile.withInputStream {
-        adsProperties.load(it)
+tasks.register("libeyesInitial") {
+    File propsFile = new File(rootDir, "ads-id.properties")
+    if (propsFile.exists()) {
+        adsProperties.clear()
+
+        propsFile.withInputStream {
+            adsProperties.load(it)
+        }
+    } else {
+        assert propsFile.createNewFile()
+
+        Properties properties = new Properties();
+
+        propsFile.withWriterAppend { writer ->
+            writer.writeLine("$key_APPID=${Globals.id_app}")
+        }
+
+        adsProperties = properties.clone()
+        properties.clear()
     }
-} else {
-    assert propsFile.createNewFile()
-
-    Properties properties = new Properties();
-
-    propsFile.withWriterAppend { writer ->
-        writer.writeLine("$key_APPID=${Globals.id_app}")
-    }
-
-    adsProperties = properties.clone()
-    properties.clear()
 }
 
 android {
