@@ -18,6 +18,6 @@ ext {
 }
 
 allprojects {
-    group = "com.github.helloworld954"
+    group = "com.helloworld954.lib"
     version = "${rootProject.ext.libVersion}"
 }
